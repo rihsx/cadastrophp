@@ -1,11 +1,11 @@
 <?php
-// Configurações do banco de dados - ajuste conforme seu ambiente
+
 $host = 'localhost';
 $usuario = 'root'; 
 $senha = ''; 
 $banco = 'seubanco'; 
 
-// Função para exibir mensagem e lista de usuários
+
 function exibeMensagem($mensagem, $sucesso = true) {
     $cor = $sucesso ? '#28a745' : '#dc3545';
     echo <<<HTML
@@ -88,18 +88,16 @@ function exibeMensagem($mensagem, $sucesso = true) {
     </div>
 HTML;
 
-    // Conexão com o banco de dados
+    
     global $host, $usuario, $senha, $banco;
     $conn = new mysqli($host, $usuario, $senha, $banco);
 
-    // Verifica conexão
     if ($conn->connect_error) {
         echo "<p class='no-data'>Erro ao conectar ao banco de dados: " . $conn->connect_error . "</p>";
         echo "</body></html>";
         exit;
     }
 
-    // Consulta todos os usuários
     $sql = "SELECT id, nome, email FROM usuarios ORDER BY id DESC";
     $result = $conn->query($sql);
 
